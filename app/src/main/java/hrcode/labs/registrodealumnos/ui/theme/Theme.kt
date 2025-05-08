@@ -42,7 +42,7 @@ fun RegistroDeAlumnosTheme(
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        darkTheme -> DarkColorScheme
+        darkTheme ->LightColorScheme// DarkColorScheme
         else -> LightColorScheme
     }
 
