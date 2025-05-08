@@ -4,13 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -57,8 +55,7 @@ fun RegisterStudentsApp() {
             NavHost(
                 navController = navController,
                 modifier = Modifier
-                    .padding(inner)
-                    .background(MaterialTheme.colorScheme.background),
+                    .padding(inner),
                 startDestination = Screen.Home.route
 
             ) {
@@ -72,10 +69,6 @@ fun RegisterStudentsApp() {
                 composable(Screen.AllStudents.route) {
                     AllStudentsScreen(navController)
                 }
-
-
-
-
         }
     }
 
