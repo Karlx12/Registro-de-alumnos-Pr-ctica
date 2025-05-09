@@ -117,7 +117,7 @@ fun SortButton(currentSort: Pair<String, Boolean>,
                 DropdownMenuItem(
                     text = {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text("$fieldName (A-Z)")
+                            Text(fieldName)
                             Icon(
                                 imageVector = Icons.Default.KeyboardArrowUp,
                                 contentDescription = "Ascendente",
@@ -135,7 +135,7 @@ fun SortButton(currentSort: Pair<String, Boolean>,
                 DropdownMenuItem(
                     text = {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text("$fieldName (Z-A)")
+                            Text(fieldName)
                             Icon(
                                 imageVector = Icons.Default.KeyboardArrowDown,
                                 contentDescription = "Descendente",
