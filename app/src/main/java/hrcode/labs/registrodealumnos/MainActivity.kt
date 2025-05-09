@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Create
@@ -17,21 +18,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import hrcode.labs.registrodealumnos.data.student.StudentViewModel
+import hrcode.labs.registrodealumnos.data.student.StudentViewModelFactory
 import hrcode.labs.registrodealumnos.ui.theme.RegistroDeAlumnosTheme
 import hrcode.labs.registrodealumnos.ui.components.BottomNavigationBar
 import hrcode.labs.registrodealumnos.ui.views.AllStudentsScreen
 import hrcode.labs.registrodealumnos.ui.views.HomeScreen
 import hrcode.labs.registrodealumnos.ui.views.RegisterStudentScreen
-
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlin.getValue
 
 
 class MainActivity : ComponentActivity() {
+    private val viewModel: StudentViewModel by viewModels {
+        StudentViewModelFactory((application as App).studentRepository)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.dummyData()
         setContent {
             RegistroDeAlumnosTheme{
                 enableEdgeToEdge()
-                RegisterStudentsApp()
+                RegisterStudentsApp(viewModel)
             }
 
         }
@@ -45,8 +53,10 @@ sealed class Screen(val route: String, val label: String, val icon: ImageVector)
 }
 
 @Composable
-fun RegisterStudentsApp() {
+fun RegisterStudentsApp(viewModel: StudentViewModel) {
     val navController = rememberNavController()
+
+
     Scaffold(
         bottomBar = {
             BottomNavigationBar(navController)
@@ -64,21 +74,13 @@ fun RegisterStudentsApp() {
                     HomeScreen(navController)
                 }
                 composable(Screen.RegisterStudent.route) {
-                    RegisterStudentScreen(navController)
+                    RegisterStudentScreen(navController, viewModel)
                 }
                 composable(Screen.AllStudents.route) {
-                    AllStudentsScreen(navController)
+                    AllStudentsScreen(navController, viewModel)
                 }
         }
     }
 
 }
 
-// Vista previa
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    RegistroDeAlumnosTheme {
-        RegisterStudentsApp()
-    }
-}
