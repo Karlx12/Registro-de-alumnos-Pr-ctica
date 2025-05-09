@@ -24,22 +24,20 @@ import hrcode.labs.registrodealumnos.ui.theme.RegistroDeAlumnosTheme
 @Composable
 fun HomeScreen(navController: NavController) {
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
-        contentAlignment = Alignment.Center
-    ) {
+
         Column(
+
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background),
         ) {
             Image(
                 painter = painterResource(id = R.drawable.logo_uns),
                 contentDescription = "Logo Uns",
                 modifier = Modifier
-//                    .background(Color.Transparent)
                     .padding(16.dp)
             )
             Text(
@@ -48,7 +46,7 @@ fun HomeScreen(navController: NavController) {
             )
         }
     }
-}
+
 
 
 @Preview(name = "HomeScreen")
