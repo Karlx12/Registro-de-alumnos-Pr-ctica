@@ -87,7 +87,7 @@ fun RegisterStudentScreen(navController: NavController, viewModel: StudentViewMo
                 studentCode = it
                 studentCodeError = ""
             },
-            label = { Text("Student Code") },
+            label = { Text("Código") },
             modifier = Modifier.fillMaxWidth(),
             isError = studentCodeError.isNotEmpty(),
             supportingText = {
